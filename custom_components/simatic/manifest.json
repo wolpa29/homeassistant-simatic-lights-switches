@@ -6,6 +6,6 @@
   "dependencies": [],
   "documentation": "https://github.com/wolpa29/homeassistant-simatic-lights-switches",
   "iot_class": "local_polling",
-  "requirements": ["python-snap7>=1.3"],
-  "version": "0.1.0"
+  "requirements": ["python-snap7==1.3"],
+  "version": "0.0.1"
 }
