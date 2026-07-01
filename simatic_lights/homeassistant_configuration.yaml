@@ -1,0 +1,24 @@
+#light:
+- platform: simatic_lights
+  host: 192.168.0.52
+  rack: 0
+  slot: 2
+  # lib: leave out by default -> python-snap7 uses its bundled library.
+  # Only uncomment if loading it fails (see README):
+  # lib: /config/libsnap7_x86_64.so
+  devices:
+    - name: "Licht Paul"
+      switch_address:
+        db_number: 71
+        start_offset: 0
+        bit_offset: 0
+      sensor_address:
+        sensor_db_number: 71
+        sensor_start_offset: 2
+        sensor_bit_offset: 0
+
+    #- name: xxx
+    #  ...
+
+  scan_interval: 1
+

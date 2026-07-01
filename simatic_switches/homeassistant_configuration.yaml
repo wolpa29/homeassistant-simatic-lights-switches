@@ -1,0 +1,24 @@
+#switch:
+- platform: simatic_switches
+  host: 192.168.0.52
+  rack: 0
+  slot: 2
+  # lib: leave out by default -> python-snap7 uses its bundled library.
+  # Only uncomment if loading it fails (see README):
+  # lib: /config/libsnap7_x86_64.so
+  devices:
+    - name: "Rollo Paul auf"
+      switch_address:
+        db_number: 71
+        start_offset: 1
+        bit_offset: 0
+      sensor_address:
+        sensor_db_number: 0
+        sensor_start_offset: 5
+        sensor_bit_offset: 7
+
+    #- name: xxx
+    #  ...
+
+  scan_interval: 1
+
