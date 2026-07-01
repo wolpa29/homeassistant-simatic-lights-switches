@@ -47,13 +47,27 @@ def sensor_address(data: Mapping[str, Any]) -> tuple[int, int, int] | None:
     return None
 
 
+def _create_client(lib: str | None, host: str, rack: int, slot: int) -> snap7.client.Client:
+    """Build the snap7 client and connect. Runs in the executor.
+
+    Both the constructor (it globs for libsnap7) and connect() block, so this
+    must not run in the event loop.
+    """
+    client = snap7.client.Client(lib)
+    client.connect(host, rack, slot)
+    return client
+
+
 async def async_setup_entry(hass: HomeAssistant, entry: ConfigEntry) -> bool:
     """Connect to the PLC and set up the light and switch platforms."""
     host = entry.data[CONF_HOST]
-    client = snap7.client.Client(entry.data.get(CONF_LIB))
     try:
-        await hass.async_add_executor_job(
-            client.connect, host, entry.data[CONF_RACK], entry.data[CONF_SLOT]
+        client = await hass.async_add_executor_job(
+            _create_client,
+            entry.data.get(CONF_LIB),
+            host,
+            entry.data[CONF_RACK],
+            entry.data[CONF_SLOT],
         )
     except Exception as err:  # snap7 raises on connection failure
         raise ConfigEntryNotReady(f"Could not connect to Simatic PLC at {host}: {err}") from err
