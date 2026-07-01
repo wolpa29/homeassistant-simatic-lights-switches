@@ -9,6 +9,15 @@
           "slot": "Slot",
           "lib": "Path to libsnap7 (optional)"
         }
+      },
+      "reconfigure": {
+        "title": "Simatic PLC connection",
+        "data": {
+          "host": "Host / IP address",
+          "rack": "Rack",
+          "slot": "Slot",
+          "lib": "Path to libsnap7 (optional)"
+        }
       }
     }
   },

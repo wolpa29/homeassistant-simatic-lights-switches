@@ -18,8 +18,9 @@ Integration), install it and restart. Needs a fairly recent Home Assistant
 (around 2025.3 or newer). You can also just copy `custom_components/simatic/`
 into your `config/custom_components/` folder by hand.
 
-`python-snap7` gets installed automatically. Since 1.3 it ships its own
-`libsnap7`, so leave the library path empty. Only fill it in if loading fails.
+`python-snap7` gets installed automatically. This uses version 3.0+, which is
+pure Python, so there's no native `libsnap7.so` to worry about anymore (that was
+the annoying part on Linux). Just leave the library path empty.
 
 ## Setup
 

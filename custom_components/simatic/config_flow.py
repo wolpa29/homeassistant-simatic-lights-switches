@@ -60,6 +60,16 @@ class SimaticConfigFlow(ConfigFlow, domain=DOMAIN):
             return self.async_create_entry(title=user_input[CONF_HOST], data=user_input)
         return self.async_show_form(step_id="user", data_schema=CONNECTION_SCHEMA)
 
+    async def async_step_reconfigure(self, user_input=None) -> FlowResult:
+        """Edit host, rack, slot or the library path of an existing connection."""
+        entry = self._get_reconfigure_entry()
+        if user_input is not None:
+            return self.async_update_reload_and_abort(entry, data=user_input)
+        return self.async_show_form(
+            step_id="reconfigure",
+            data_schema=self.add_suggested_values_to_schema(CONNECTION_SCHEMA, entry.data),
+        )
+
     @classmethod
     @callback
     def async_get_supported_subentry_types(cls, config_entry):

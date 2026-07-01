@@ -12,6 +12,7 @@ from datetime import timedelta
 from typing import Any
 
 import snap7
+from snap7 import Area
 
 from homeassistant.components.switch import SwitchEntity
 from homeassistant.config_entries import ConfigEntry
@@ -71,7 +72,7 @@ class SimaticSwitch(SwitchEntity):
         _db, byte, bit = self._status  # switches read from PA, so the DB is unused
         try:
             with self._hub.lock:
-                data = self._hub.client.read_area(snap7.types.Areas.PA, 0, byte, 1)
+                data = self._hub.client.read_area(Area.PA, 0, byte, 1)
             self._attr_is_on = bool((data[0] >> bit) & 1)
         except Exception as err:
             _LOGGER.warning("%s: reading status failed: %s", self._attr_name, err)
