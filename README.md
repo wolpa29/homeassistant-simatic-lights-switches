@@ -1,0 +1,1 @@
+# homeassistant-simatic-lights-switches
