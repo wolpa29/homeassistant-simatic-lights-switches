@@ -1,5 +1,5 @@
 #light:
-- platform: simatic_lights
+- platform: simatic_light
   host: 192.168.0.52
   rack: 0
   slot: 2
