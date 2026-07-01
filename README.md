@@ -17,7 +17,7 @@ In my setup these are momentary push buttons (Taster), not level switches, so th
 component only sends a short pulse. The PLC reacts on the falling edge.
 
 `python-snap7` is listed as a requirement, so Home Assistant installs it
-automatically. Since `python-snap7 >= 1.3` ships the native `libsnap7` library,
+automatically. Since `python-snap7 == 1.3` ships the native `libsnap7` library,
 you normally just leave the `lib:` option out of your config.
 
 If loading the bundled library fails, get a matching `libsnap7.so` (from the
