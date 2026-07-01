@@ -1,0 +1,5 @@
+{
+  "name": "Simatic (S7) Lights & Switches",
+  "render_readme": true,
+  "homeassistant": "2025.3.0"
+}

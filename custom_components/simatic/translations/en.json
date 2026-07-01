@@ -1,0 +1,83 @@
+{
+  "config": {
+    "step": {
+      "user": {
+        "title": "Simatic PLC connection",
+        "data": {
+          "host": "Host / IP address",
+          "rack": "Rack",
+          "slot": "Slot",
+          "lib": "Path to libsnap7 (optional)"
+        }
+      }
+    }
+  },
+  "config_subentries": {
+    "light": {
+      "title": "Light",
+      "initiate_flow": {
+        "user": "Add light"
+      },
+      "entry_type": "Light",
+      "step": {
+        "user": {
+          "title": "Add light",
+          "data": {
+            "name": "Name",
+            "db_number": "DB number",
+            "start_offset": "Byte offset",
+            "bit_offset": "Bit offset",
+            "sensor_db_number": "Status DB number (optional)",
+            "sensor_start_offset": "Status byte offset (optional)",
+            "sensor_bit_offset": "Status bit offset (optional)"
+          }
+        },
+        "reconfigure": {
+          "title": "Edit light",
+          "data": {
+            "name": "Name",
+            "db_number": "DB number",
+            "start_offset": "Byte offset",
+            "bit_offset": "Bit offset",
+            "sensor_db_number": "Status DB number (optional)",
+            "sensor_start_offset": "Status byte offset (optional)",
+            "sensor_bit_offset": "Status bit offset (optional)"
+          }
+        }
+      }
+    },
+    "switch": {
+      "title": "Switch / blind",
+      "initiate_flow": {
+        "user": "Add switch / blind"
+      },
+      "entry_type": "Switch / blind",
+      "step": {
+        "user": {
+          "title": "Add switch / blind",
+          "data": {
+            "name": "Name",
+            "db_number": "DB number",
+            "start_offset": "Byte offset",
+            "bit_offset": "Bit offset",
+            "sensor_db_number": "Status DB number (unused for switches)",
+            "sensor_start_offset": "Status byte offset (optional, read from PA)",
+            "sensor_bit_offset": "Status bit offset (optional, read from PA)"
+          }
+        },
+        "reconfigure": {
+          "title": "Edit switch / blind",
+          "data": {
+            "name": "Name",
+            "db_number": "DB number",
+            "start_offset": "Byte offset",
+            "bit_offset": "Bit offset",
+            "sensor_db_number": "Status DB number (unused for switches)",
+            "sensor_start_offset": "Status byte offset (optional, read from PA)",
+            "sensor_bit_offset": "Status bit offset (optional, read from PA)"
+          }
+        }
+      }
+    }
+  }
+}

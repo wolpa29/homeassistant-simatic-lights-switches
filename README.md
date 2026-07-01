@@ -1,3 +1,52 @@
+# Home Assistant Simatic (S7) integration
+
+Connects Home Assistant to a Siemens Simatic PLC (S7) over
+[snap7](https://snap7.sourceforge.net/). My lights and blinds are momentary push
+buttons (Taster), so turning one on or off just sends a short pulse on a bit in a
+data block, and the PLC reacts on the edge.
+
+Everything is set up in the UI now, no YAML. You add one connection to your PLC,
+then add each light and blind as a device. The old YAML components, to manually add it in the folder structure and with the configuration.yaml file, are still in
+`original/` if you want them. (no HACS overhead)
+
+## Install with HACS
+
+[![Open in HACS](https://my.home-assistant.io/badges/hacs_repository.svg)](https://my.home-assistant.io/redirect/hacs_repository/?owner=wolpa29&repository=homeassistant-simatic-lights-switches&category=integration)
+
+Click the button (or add this repo in HACS as a custom repository, category
+Integration), install it and restart. Needs a fairly recent Home Assistant
+(around 2025.3 or newer). You can also just copy `custom_components/simatic/`
+into your `config/custom_components/` folder by hand.
+
+`python-snap7` gets installed automatically. Since 1.3 it ships its own
+`libsnap7`, so leave the library path empty. Only fill it in if loading fails.
+
+## Setup
+
+1. Settings -> Devices and Services -> Add Integration -> Simatic (S7). Enter
+   host/IP, rack and slot (defaults 0 / 2). Done once.
+2. On the integration, hit Add device, pick Light or Switch/blind, and fill in
+   name, the control address (`db_number`, `start_offset`, `bit_offset`) and
+   optionally a status address for state feedback.
+3. Repeat for every device. You can edit or remove them in the UI anytime.
+
+## Good to know
+
+- Lights read their status from a data block, switches read it from the output
+  process image (PA area), same as my original code. So for switches the status
+  `db_number` is ignored, only byte and bit matter.
+- All devices share one connection to the PLC and poll once per second.
+
+> Uses snap7 (LGPL v3), which is not shipped here.
+
+---
+
+# Old YAML components
+
+Below is the original README for the older `simatic_lights` and
+`simatic_switches` components, now kept under `original/`. Still work, but need
+YAML and a restart to change devices.
+
 # Homeassistant Simatic lights and switches integrations
 
 Home Assistant custom components to connect a Siemens Simatic PLC (S7) over
